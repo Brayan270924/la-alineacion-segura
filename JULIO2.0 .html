@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Alineación Segura - Edición 3 Páginas</title>
+    <style>
+        /* Fondos y Estilos Generales */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #d5d9e0 0%, #f4f5f7 100%);
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            gap: 50px; 
+        }
+
+        /* Cada "Página" del periódico */
+        .newspaper {
+            width: 100%;
+            max-width: 1050px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Encabezado Vistoso (Página 1) */
+        .header {
+            background: linear-gradient(90deg, #0b192c, #1a365d, #0b192c);
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+            border-bottom: 5px solid #d4af37;
+        }
+
+        .header h1 {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 3.8rem;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #f8f9fa;
+        }
+
+        /* Encabezados Secundarios (Página 2 y 3) */
+        .header-page2 {
+            background: linear-gradient(90deg, #1a365d, #2c5282, #1a365d);
+            color: #ffffff;
+            text-align: center;
+            padding: 25px 20px;
+            border-bottom: 5px solid #d4af37;
+        }
+
+        .header-page2 h2 {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 2.2rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f8f9fa;
+        }
+
+        .slogan {
+            font-style: italic;
+            color: #d4af37;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-around;
+            background-color: rgba(255,255,255,0.1);
+            padding: 10px 0;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 5px;
+        }
+
+        /* Estructura de Columnas */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 2fr 1.2fr;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        /* Títulos de Sección */
+        .section-title {
+            font-family: 'Georgia', serif;
+            font-size: 1.6rem;
+            color: #1a365d;
+            border-bottom: 3px solid #d4af37;
+            padding-bottom: 5px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: justify;
+            color: #444;
+        }
+
+        /* Clase para destacar Emojis */
+        .emoji-large {
+            font-size: 1.3em;
+            vertical-align: middle;
+        }
+
+        /* Bloques Simuladores de Espacio */
+        .graphic-placeholder {
+            background-color: #f1f5f9;
+            border: 3px dashed #cbd5e1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Gráfico de la Plática del Mes */
+        .topic-graphic {
+            background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), url('https://placehold.co/800x300/1a365d/d4af37?text=TACTICA+DE+SEGURIDAD') center/cover;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            border-left: 8px solid #d4af37;
+        }
+
+        .topic-graphic h3 {
+            font-size: 2rem;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffffff;
+        }
+
+        .topic-graphic p {
+            color: #ffffff !important;
+            text-align: center;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        /* Imagen de Pasos e Imágenes Responsivas */
+        .steps-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        /* --- ESTILOS MINIMALISTAS PARA PÁGINA 2 --- */
+        .centered-image {
+            display: block;
+            margin: 0 auto 35px auto;
+            max-width: 85%;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .minimal-content-wrapper {
+            padding: 0 15px;
+        }
+
+        .minimal-quote {
+            background-color: transparent;
+            border-left: 4px solid #1a365d;
+            padding: 10px 25px;
+            margin-bottom: 35px;
+        }
+        
+        .minimal-quote p {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.7;
+        }
+        
+        .call-to-action {
+            text-align: center;
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+            padding: 25px 20px;
+            background: linear-gradient(135deg, #1a365d, #0b192c);
+            border-radius: 8px;
+            border-bottom: 5px solid #d4af37;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-top: 30px;
+        }
+        
+        .truth-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-top: 5px solid #d4af37;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .truth-card h4 {
+            margin: 0 0 10px 0;
+            font-family: 'Georgia', serif;
+            font-size: 1.25rem;
+            color: #1a365d;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .truth-card p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        /* ------------------------------------------- */
+
+        /* --- ESTILOS PARA PÁGINA 3 (PILARES PSM Y FOOTER) --- */
+        .pillars-container {
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pillar-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-top: 4px solid #1a365d;
+            border-radius: 8px;
+            padding: 15px 5px;
+            text-align: center;
+            flex: 1;
+            min-width: 85px;
+        }
+        
+        .pillar-card:hover:not(img) {
+            border-top-color: #d4af37;
+        }
+
+        .pillar-card .emoji-large {
+            display: block;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .pillar-card span {
+            display: block;
+            font-size: 0.85rem;
+            color: #1a365d;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .footer-banner {
+            background: linear-gradient(90deg, #0b192c, #1a365d, #0b192c);
+            color: #d4af37;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 1.6rem;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.3);
+        }
+        /* ----------------------------------------------------------- */
+
+        /* Jugador Franquicia (MVP) */
+        .mvp-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 40px;
+            border-top: 5px solid #d4af37;
+        }
+
+        .mvp-content {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .photo-wrapper {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .photo-wrapper img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #d4af37;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            background-color: #e2e8f0; 
+        }
+
+        .mvp-badge {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1a365d;
+            color: #d4af37;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 2px solid #d4af37;
+        }
+
+        .mvp-text h3 {
+            margin: 0 0 5px 0;
+            font-family: 'Georgia', serif;
+            color: #1a365d;
+            font-size: 1.8rem;
+        }
+
+        .mvp-text h4 {
+            margin: 0 0 15px 0;
+            color: #666;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* EQUIPO CAMPEÓN */
+        .team-section {
+            background-color: #1a365d;
+            border-radius: 8px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-section::before {
+            content: '🏆';
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            font-size: 10rem;
+            opacity: 0.1;
+        }
+
+        .team-section h3 {
+            color: #d4af37;
+            margin-top: 0;
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .team-section p {
+            color: #ffffff !important;
+            margin-bottom: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Columna Derecha */
+        .side-column {
+            background-color: #f8fafc;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .var-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+
+        .var-list li {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid #48bb78; 
+        }
+
+        .var-list li.foul {
+            border-left-color: #ecc94b; 
+        }
+
+        /* Tarjetas QR */
+        .qr-card {
+            background: linear-gradient(180deg, #1a365d 0%, #0b192c 100%);
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            border-bottom: 4px solid #d4af37;
+        }
+
+        .qr-card h4 {
+            margin: 0 0 10px 0;
+            font-family: 'Georgia', serif;
+            font-size: 1.3rem;
+            color: #d4af37;
+        }
+
+        .qr-card p { color: #e2e8f0 !important; font-size: 0.95rem; }
+
+        .qr-image-wrapper {
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 15px 0;
+        }
+
+        .qr-image-wrapper img {
+            width: 150px;
+            height: 150px;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* --- ANIMACIONES Y EFECTOS HOVER (Excluyendo img) --- */
+        .topic-graphic, 
+        .mvp-section, 
+        .team-section, 
+        .side-column, 
+        .truth-card, 
+        .qr-card, 
+        .info-card, 
+        .var-list li, 
+        .pillar-card,
+        .call-to-action {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .topic-graphic:hover:not(img), 
+        .mvp-section:hover:not(img), 
+        .team-section:hover:not(img), 
+        .side-column:hover:not(img), 
+        .truth-card:hover:not(img), 
+        .qr-card:hover:not(img), 
+        .info-card:hover:not(img), 
+        .var-list li:hover:not(img), 
+        .pillar-card:hover:not(img),
+        .call-to-action:hover:not(img) {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+        /* ---------------------------------------------------- */
+
+        /* Página indicador */
+        .page-number {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #a0aec0;
+            padding: 20px 40px 20px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================= PÁGINA 1: TÁCTICAS Y REGLAS ======================= -->
+    <div class="newspaper">
+        
+        <!-- ENCABEZADO VISTOSO -->
+        <div class="header">
+            <h1>La Alineación Segura</h1>
+            <div class="slogan">"El verdadero trofeo es un turno sin incidentes."</div>
+            <div class="meta-info">
+                <span>📍 Planta: BEERACRUZ (CCV)</span>
+                <span>📅 Edición: Julio 2026</span>
+                <span>📖 Volumen: 01</span>
+            </div>
+        </div>
+
+        <!-- CONTENIDO PRINCIPAL PÁGINA 1 -->
+        <div class="grid-container" style="padding-bottom: 10px;">
+            
+            <!-- Columna Izquierda -->
+            <div class="main-column">
+                
+                <h2 class="section-title">📋 La Táctica del Mes</h2>
+                
+                <div class="topic-graphic">
+                    <h3>Actos y Condiciones</h3>
+                    <p>Conocer las reglas del juego nos mantiene seguros en la cancha.</p>
+                </div>
+
+                <p>En nuestra cancha de <strong>BEERACRUZ</strong>, es vital distinguir los riesgos. Un <strong>Acto Inseguro</strong> se refiere a las acciones realizadas por el trabajador que implican una omisión o violación a un método de trabajo o medida determinados como seguros. Por su parte, una <strong>Condición Insegura</strong> es la inobservancia o desatención de las medidas de seguridad del entorno que puede provocar incidentes, accidentes, enfermedades laborales o daños materiales.</p>
+
+                <!-- INFOGRAFÍA DE ACTO VS CONDICIÓN -->
+                <img src="acto vs condicion.png" alt="Seguridad Laboral: El Riesgo de la Combinación" class="steps-image">
+
+                <!-- IMAGEN DE PASOS DE RETROALIMENTACIÓN -->
+                <img src="PASOS RETRO.png" alt="Pasos para una Correcta Retroalimentación" class="steps-image">
+
+            </div>
+
+            <!-- Columna Derecha -->
+            <div class="side-column">
+                
+                <h2 class="section-title">🔍 VAR de Prevención</h2>
+                
+                <!-- IMAGEN DEL VAR -->
+                <img src="Gemini_Generated_Image_e7ihkqe7ihkqe7ih.png" alt="VAR - Revisión de Situación Insegura: Condición No Reportable" class="steps-image">
+
+                <ul class="var-list">
+                    <li class="foul">
+                        <strong>🟨 Tarjeta Amarilla:</strong><br>
+                        Omitir el uso de EPP (equipo de protección) para "terminar más rápido". Esto es un claro <strong>Acto Inseguro</strong> que amerita una retroalimentación inmediata.
+                    </li>
+                </ul>
+
+                <h2 class="section-title" style="margin-top: 40px;">📱 Zona de Vestidores</h2>
+                
+                <!-- QR 1: REPORTE DE CONDICIONES Y ACTOS INSEGUROS -->
+                <div class="qr-card">
+                    <h4>💡 Reporte de Condiciones y Actos Inseguros</h4>
+                    <p>Si detectas un riesgo mayor o una acción insegura, escanea este código para levantar tu reporte oficial.</p>
+                    <div class="qr-image-wrapper">
+                        <img src="QR reporte de condiciones.png" alt="QR Buzón de Reportes">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="page-number">PÁGINA 1 DE 3</div>
+    </div>
+
+
+    <!-- ======================= PÁGINA 2: HISTORIA DE VIDA Y MVP ======================= -->
+    <div class="newspaper">
+        
+        <!-- ENCABEZADO PÁGINA 2 -->
+        <div class="header-page2">
+            <h2>Historias de Vida y El Jugador Franquicia</h2>
+        </div>
+
+        <!-- CONTENIDO PRINCIPAL PÁGINA 2 -->
+        <div class="grid-container" style="padding-bottom: 10px;">
+            
+            <!-- Columna Izquierda (Aarón Acosta y Reconocimiento) -->
+            <div class="main-column">
+                
+                <!-- SECCIÓN 1: HISTORIA DE VIDA (ARRIBA) -->
+                <h2 class="section-title">
+                    <span class="emoji-large">⚡</span> Aarón Acosta: Un segundo lo cambia todo <span class="emoji-large">⚽</span>
+                </h2>
+                
+                <p style="margin-bottom: 30px; font-size: 1.05rem;">A los 18 años, un accidente eléctrico le costó a Aarón sus cuatro extremidades. Hoy, su historia nos recuerda que en nuestra alineación diaria, la seguridad es innegociable <span class="emoji-large">🛡️</span>.</p>
+
+                <!-- IMAGEN AARÓN ACOSTA -->
+                <img src="Aaron acosta.png" alt="Aarón Acosta: Un segundo que cambia todo" class="centered-image">
+
+                <!-- CONTENIDO MINIMALISTA -->
+                <div class="minimal-content-wrapper">
+                    <h4 style="color: #1a365d; font-family: 'Georgia', serif; font-size: 1.3rem; margin-top: 0; margin-bottom: 15px;">
+                        <span class="emoji-large">📋</span> Nuestra táctica como equipo:
+                    </h4>
+                    <div class="minimal-quote">
+                        <p>Seguir las reglas no es para evitar sanciones, es para cuidarnos. Si ves un acto inseguro en la línea <span class="emoji-large">🏭</span>, no te calles <span class="emoji-large">🗣️</span>. Recordarle a un compañero que use su EPP no es molestar, es salvarle la vida <span class="emoji-large">🤝</span>.</p>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2: MVP (ABAJO) -->
+                <h2 class="section-title" style="margin-top: 50px;">🥇 Nuestro Titular Indiscutible</h2>
+                <div class="mvp-section" style="margin-bottom: 0;">
+                    <div class="mvp-content">
+                        <div class="photo-wrapper">
+                            <img src="https://placehold.co/200x200/e2e8f0/e2e8f0" alt="Foto del Trabajador">
+                            <div class="mvp-badge">MVP</div>
+                        </div>
+                        <div class="mvp-text">
+                            <h3>Fernando</h3>
+                            <h4>Línea de Envasado</h4>
+                            <p><strong>¿Por qué es nuestro Jugador Franquicia?</strong><br>
+                            Por su excelente actitud y liderazgo para dar retroalimentación. Fernando siempre aborda a sus compañeros siguiendo los 5 pasos: conectando con respeto y creando compromisos compartidos. ¡Un verdadero líder que evita actos inseguros en la cancha!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Columna Derecha (3 Verdades, Call to Action y QR) -->
+            <div class="side-column">
+                
+                <h2 class="section-title" style="border-bottom-color: #d4af37;">
+                    <span class="emoji-large">🏆</span> 3 Verdades Diarias
+                </h2>
+                
+                <div class="truth-card" style="border-top-color: #d4af37;">
+                    <h4><span style="font-size: 1.5rem;">1️⃣ ⚠️</span> El peligro no avisa</h4>
+                    <p>Un segundo de exceso de confianza tiene consecuencias permanentes.</p>
+                </div>
+
+                <div class="truth-card" style="border-top-color: #3182ce;">
+                    <h4><span style="font-size: 1.5rem;">2️⃣ 👨‍👩‍👦</span> El impacto es familiar</h4>
+                    <p>Un accidente destruye la tranquilidad de quienes te esperan en casa. <strong>¡No te pasa solo a ti!</strong></p>
+                </div>
+
+                <div class="truth-card" style="border-top-color: #e53e3e;">
+                    <h4><span style="font-size: 1.5rem;">3️⃣ 👷‍♂️</span> Cero complacencia</h4>
+                    <p>Tu actitud y tu Equipo de Protección Personal (EPP) son tu mejor defensa.</p>
+                </div>
+
+                <!-- CUIDATE CUIDALOS -->
+                <div class="call-to-action">
+                    <span class="emoji-large">🔄</span> Cuídate ↔ Cuídalos <br><br>
+                    <span class="emoji-large" style="color: #d4af37;">🛡️</span> ¿Y tú, ya te pusiste tu escudo hoy? <span class="emoji-large" style="color: #d4af37;">🛡️</span>
+                </div>
+
+                <!-- QR 2: RECONOCIMIENTOS -->
+                <div class="qr-card" style="margin-top: 30px;">
+                    <h4>⭐ Buzón de Reconocimientos</h4>
+                    <p>¿Alguien de tu equipo demostró una gran cultura de seguridad? Escanea aquí para nominar al próximo Jugador Franquicia o Equipo Campeón.</p>
+                    <div class="qr-image-wrapper">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Nominaciones" alt="QR Reconocimientos">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="page-number">PÁGINA 2 DE 3</div>
+    </div>
+
+
+    <!-- ======================= PÁGINA 3: PSM Y EQUIPO CAMPEÓN ======================= -->
+    <div class="newspaper">
+        
+        <!-- ENCABEZADO PÁGINA 3 -->
+        <div class="header-page2">
+            <h2>Seguridad de Procesos (PSM) & El Equipo Campeón</h2>
+        </div>
+
+        <!-- CONTENIDO PRINCIPAL PÁGINA 3 -->
+        <div class="grid-container" style="padding-bottom: 30px;">
+            
+            <!-- Columna Izquierda (PSM Bloque 1, Pilares y Equipo Campeón) -->
+            <div class="main-column">
+                
+                <!-- SECCIÓN 1: PSM PRINCIPAL (ARRIBA) -->
+                <h2 class="section-title">⚙️ Seguridad de Procesos (PSM)</h2>
+                
+                <!-- INFOGRAFÍA PSM -->
+                <img src="Gemini_Generated_Image_q54orjq54orjq54o.png" alt="Nuestro Compromiso con la Seguridad - 6 Pasos Clave" class="steps-image" style="margin-bottom: 40px;">
+
+                <!-- SECCIÓN: PILARES PSM -->
+                <div class="truth-card" style="border-top-color: #3182ce; margin-bottom: 50px;">
+                    <h4 style="color: #e53e3e; margin-bottom: 10px; font-size: 1.4rem;">
+                        <span class="emoji-large">⚠️</span> Prevención de Incidentes Mayores
+                    </h4>
+                    <p style="margin-bottom: 25px; font-size: 1.05rem;">Cada decisión que tomamos en el día a día es clave para evitar cualquier eventualidad en planta.</p>
+                    
+                    <h5 style="color: #1a365d; font-family: 'Georgia', serif; font-size: 1.15rem; margin: 0 0 10px 0;">Los 5 Pilares del Compromiso:</h5>
+                    
+                    <div class="pillars-container">
+                        <div class="pillar-card">
+                            <span class="emoji-large">🏢</span>
+                            <span>1. Cultura</span>
+                        </div>
+                        <div class="pillar-card">
+                            <span class="emoji-large">📋</span>
+                            <span>2. Estándares</span>
+                        </div>
+                        <div class="pillar-card">
+                            <span class="emoji-large">👷</span>
+                            <span>3. Competencia</span>
+                        </div>
+                        <div class="pillar-card">
+                            <span class="emoji-large">🤝</span>
+                            <span>4. Participación</span>
+                        </div>
+                        <div class="pillar-card">
+                            <span class="emoji-large">🌐</span>
+                            <span>5. Grupos de Interés</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2: EQUIPO CAMPEÓN (ABAJO) -->
+                <h2 class="section-title" style="margin-top: 20px;">🏆 El Equipo Campeón de la Jornada</h2>
+                <div class="team-section" style="margin-top: 0; margin-bottom: 0;">
+                    <!-- ESPACIO PARA FOTO GRUPAL -->
+                    <div class="graphic-placeholder" style="height: 250px; background-color: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); color: #fff;">
+                        [ ESPACIO PARA FOTOGRAFÍA DEL EQUIPO CAMPEÓN ]
+                    </div>
+                    <p>
+                        <strong>Cadena de Suministros:</strong> Reconocimiento especial a todo el equipo por corregir múltiples condiciones menores de forma inmediata, demostrando el criterio correcto de lo que NO requiere reporte técnico, pero sí requiere acción rápida. ¡Felicidades, campeones!
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Columna Derecha (Más PSM y QR final) -->
+            <div class="side-column">
+                
+                <h2 class="section-title">🔍 Enfoque PSM</h2>
+                
+                <!-- CONTENIDO: PROCESO DE ACCIÓN PSM -->
+                <div class="truth-card" style="border-top-color: #1a365d;">
+                    <h4 style="display: block; text-align: center; margin-bottom: 25px; color: #1a365d;">
+                        Nuestro Proceso de Acción
+                    </h4>
+
+                    <div style="margin-bottom: 20px;">
+                        <h5 style="margin: 0 0 5px 0; color: #1a365d; font-size: 1.1rem;">
+                            <span class="emoji-large">🔍</span> 1. LO CUESTIONO
+                        </h5>
+                        <p style="margin: 0; color: #4a5568; line-height: 1.5;">Observa y analiza si algo en tu área o proceso no es seguro.</p>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <h5 style="margin: 0 0 5px 0; color: #d4af37; font-size: 1.1rem;">
+                            <span class="emoji-large">💬</span> 2. LO COMUNICO
+                        </h5>
+                        <p style="margin: 0; color: #4a5568; line-height: 1.5;">Repórtalo de inmediato a tu equipo o supervisor.</p>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <h5 style="margin: 0 0 5px 0; color: #e53e3e; font-size: 1.1rem;">
+                            <span class="emoji-large">🛑</span> 3. LO DETENGO
+                        </h5>
+                        <p style="margin: 0; color: #4a5568; line-height: 1.5;">Recuerda: tienes total autoridad para detener cualquier actividad si es necesario.</p>
+                    </div>
+
+                    <div style="background-color: #f1f5f9; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; color: #1a365d; font-size: 0.95rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                        <span class="emoji-large">👥</span> Porque la seguridad de procesos la construimos entre todos.
+                    </div>
+                </div>
+
+                <!-- PSM PLACEHOLDER 3 -->
+                <div class="graphic-placeholder" style="height: 150px; background-color: #fff; border-color: #4a5568; color: #4a5568;">
+                    [ ESPACIO PSM: <br>MÉTRICAS O INDICADORES ]
+                </div>
+
+                <!-- QR 3: REGISTRO DE LECTURA -->
+                <div class="qr-card">
+                    <h4>✅ Registro de Asistencia</h4>
+                    <p>Escanea este código para confirmar que leíste esta edición. ¡Tu participación es clave para nuestra cultura preventiva!</p>
+                    <div class="qr-image-wrapper">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=RegistroLectura" alt="QR Registro de Lectura">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- FOOTER BANNER FINAL (Cierre de la página 3) -->
+        <div class="footer-banner">
+            ⭐ La seguridad no es suerte, es cultura. ⭐
+        </div>
+
+        <div class="page-number">PÁGINA 3 DE 3</div>
+    </div>
+
+</body>
+</html>
